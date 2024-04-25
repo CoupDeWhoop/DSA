@@ -3,7 +3,7 @@ const isPalindrome = (x) => {
   return string.split("").reverse().join("") === string;
 };
 
-const isPalindromeWithoutString = (x) => {
+const isPalindromeWithoutString = (input) => {
   const getDigit = (remainingNum, reversed) => {
     const digit = remainingNum % 10;
     reversed += digit;
@@ -17,10 +17,6 @@ const isPalindromeWithoutString = (x) => {
     return getDigit(remainingNum, reversed);
   };
 
-  let number = x;
-  const reversed = getDigit(number, 0);
-  console.log(reversed, x);
-  return reversed === x;
+  const reversedInput = getDigit(input, 0);
+  return reversedInput === input;
 };
-
-console.log(isPalindromeWithoutString(98899));
