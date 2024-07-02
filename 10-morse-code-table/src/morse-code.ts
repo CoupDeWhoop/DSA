@@ -1,29 +1,39 @@
-import { MORSE_CODE, ALPHABET_TO_MORSE } from "./morse-code-dictionary";
-
-function deCodeMorse(morse: string) {
-  const convertMorseWord = (word: string) =>
-    word
-      .split(" ")
-      .map((letter) => MORSE_CODE[letter] || "#")
-      .join("");
-
-  return morse.trim().split("   ").map(convertMorseWord).join(" ");
-}
-
-function encodeMorse(sentence: string) {
-  const convertWord = (word: string) =>
-    word
-      .split("")
-      .map((letter) => ALPHABET_TO_MORSE[letter])
-      .join(" ");
-
-  return sentence.trim().split(" ").map(convertWord).join("   ");
-}
+import { MORSE_TO_ALPHABET, ALPHABET_TO_MORSE } from "./morse-code-dictionary";
 
 function morseCodeConverter(string: string, toMorse?: boolean) {
   if (string.trim() === "") return "";
+  return toMorse ? encodeMorse(string) : decodeMorse(string);
+}
 
-  return toMorse ? encodeMorse(string) : deCodeMorse(string);
+function encodeMorse(sentence: string): string {
+  return sentence
+    .toUpperCase()
+    .trim()
+    .split(" ")
+    .map((word) => encodeWordToMorse(word))
+    .join("   ");
+}
+
+function encodeWordToMorse(word: string) {
+  return word
+    .split("")
+    .map((letter) => ALPHABET_TO_MORSE[letter])
+    .join(" ");
+}
+
+function decodeMorse(morse: string): string {
+  return morse
+    .trim()
+    .split("   ")
+    .map((word) => decodeMorseWord(word))
+    .join(" ");
+}
+
+function decodeMorseWord(morseWord: string): string {
+  return morseWord
+    .split(" ")
+    .map((morseLetter) => MORSE_TO_ALPHABET[morseLetter] || "#")
+    .join("");
 }
 
 export default morseCodeConverter;

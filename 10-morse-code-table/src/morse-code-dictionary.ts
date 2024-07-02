@@ -1,4 +1,4 @@
-export const MORSE_CODE: { [key: string]: string } = {
+export const MORSE_TO_ALPHABET: { [key: string]: string } = {
   ".-": "A",
   "-...": "B",
   "-.-.": "C",
@@ -47,4 +47,4 @@ export function reverseKeysAndValues(obj: { [key: string]: string }): {
   return reversed;
 }
 
-export const ALPHABET_TO_MORSE = reverseKeysAndValues(MORSE_CODE);
+export const ALPHABET_TO_MORSE = reverseKeysAndValues(MORSE_TO_ALPHABET);
